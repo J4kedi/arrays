@@ -7,6 +7,14 @@ public class Fila {
         this.data = new int[size];
     }
 
+    public int getBase() {
+        return base;
+    }
+
+    public int getTop() {
+        return top;
+    }
+
     public void add(int n) {
         data[top] = n;
         top = move(top);
@@ -39,12 +47,14 @@ public class Fila {
 
     @Override
     public String toString() {
-        String stringData = "[ ";
+        String stringData = "[";
 
-        for (int i : data) {
-            stringData += Integer.toString(data[i]) + " ";
+        int finalIdx = data.length - 1;
+
+        for (int i = 0; i < finalIdx; i ++) {
+            stringData += Integer.toString(data[i]) + ", ";
         }
 
-        return stringData + "]";
+        return stringData + data[finalIdx] + "]";
     }
 }
