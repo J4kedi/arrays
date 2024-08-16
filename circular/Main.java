@@ -38,5 +38,8 @@ public class Main {
         System.out.println("\nFila: ");
         System.out.println("Base(" + fila.getBase() + ")" + " Top(" + fila.getTop() + ")");
         System.out.println(fila);
+        
+        fila.add(5);
+        System.out.println(fila);
     }
 }

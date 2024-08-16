@@ -17,7 +17,11 @@ public class Fila {
 
     public void add(int n) {
         data[top] = n;
-        top = move(top);
+        if (isFull()) {
+            top = move(top);
+        } else {
+            System.out.println("Tá chein");
+        }
     }
 
     public int rm () {
