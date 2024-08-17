@@ -1,10 +1,13 @@
-public class Fila {
+import java.util.Arrays;
+
+public class Fila<T> {
     private int top = 0;
     private int base = 0;
-    private int[] data;
+    private T[] data;
 
+    @SuppressWarnings("unchecked")
     public Fila(int size) {
-        this.data = new int[size];
+        this.data = (T[]) new Object[size];
     }
 
     public int getBase() {
@@ -15,27 +18,30 @@ public class Fila {
         return top;
     }
 
-    public void add(int n) {
-        data[top] = n;
-        if (isFull()) {
+    public void add(T n) {
+        if (!isFull()) {
+            data[top] = n;
+            System.out.println("Adicionado: " + data[top]);
             top = move(top);
         } else {
-            System.out.println("Tá chein");
+            System.out.println("\nTentado adicionar: " + n + ", mas está chein");
         }
     }
 
-    public int rm () {
-        int v = data[base];
-        data[base] = -1;
-        base++;
+    public T rm() {
+        if (data[base] == null) {
+            System.out.println("Fila vazia");
+            return null;
+        }
+        T v = data[base];
+        System.out.println("Removido: " + data[base]);
+        data[base] = null;
+        base = move(base);
         return v;
     }
 
     public int move(int pos) {
-        if (pos + 1 == data.length) {
-            return 0;
-        } 
-        return pos + 1;
+        return (pos + 1) % data.length;
     }
 
     public boolean isFull() {
@@ -45,20 +51,8 @@ public class Fila {
         return false;
     }
 
-    public boolean isEmpty() {
-        return !isFull();
-    }
-
     @Override
     public String toString() {
-        String stringData = "[";
-
-        int finalIdx = data.length - 1;
-
-        for (int i = 0; i < finalIdx; i ++) {
-            stringData += Integer.toString(data[i]) + ", ";
-        }
-
-        return stringData + data[finalIdx] + "]";
+        return Arrays.toString(data);
     }
 }

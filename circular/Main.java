@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Fila fila = new Fila(5);
+        Fila<Integer> fila = new Fila<>(5);
 
         fila.add(5);
         fila.add(8);
@@ -19,11 +19,11 @@ public class Main {
         
         fila.add(7);
         fila.add(14);
-        
         fila.add(3);
         fila.add(11);
         
         System.out.println("\nFila: ");
+        System.out.println("Base(" + fila.getBase() + ")" + " Top(" + fila.getTop() + ")");
         System.out.println(fila);
         
         n = fila.rm();
@@ -39,7 +39,10 @@ public class Main {
         System.out.println("Base(" + fila.getBase() + ")" + " Top(" + fila.getTop() + ")");
         System.out.println(fila);
         
+        fila.rm();
+
         fila.add(5);
+        fila.add(30);
         System.out.println(fila);
     }
 }
