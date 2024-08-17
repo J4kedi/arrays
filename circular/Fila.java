@@ -18,6 +18,15 @@ public class Fila<T> {
         return top;
     }
 
+    public void clear() {
+        for (int i = 0; i < data.length; i++) {
+            data[i] = null;
+        }
+
+        top = 0;
+        base = 0;
+    }
+
     public void add(T n) {
         if (!isFull()) {
             data[top] = n;
@@ -45,10 +54,11 @@ public class Fila<T> {
     }
 
     public boolean isFull() {
-        if (top == base && base != 0) {
-            return true;
-        }
-        return false;
+        return top == base && base != 0;
+    }
+
+    public boolean isEmpty() {
+        return top == base && base == 0;
     }
 
     @Override
