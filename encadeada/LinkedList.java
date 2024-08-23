@@ -1,10 +1,16 @@
 public class LinkedList<T> {
     private int tamanho;
-    private int base = 0;
-    private int topo = 0;
+    private Node<T> base;
+    private Node<T> topo;
 
     public LinkedList(int tamanho) {
         this.tamanho = tamanho;
+    }
+
+    @SuppressWarnings({ "unchecked", "null" })
+    public void clear() {
+        base = null;
+        topo = null;
     }
 
     private static class Node<T> {
@@ -25,11 +31,7 @@ public class LinkedList<T> {
 
     }
 
-    public int getBase() {
-        return base;
-    }
-
-    public int getTopo() {
-        return topo;
+    public int find(T data) {
+        
     }
 }
