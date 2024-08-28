@@ -1,28 +1,47 @@
 public class LinkedList<T> {
     private Node<T> base;
     private Node<T> topo;
-    private int tamanho;
+    private int tamanho = 0;
 
     public void add(T v) {
+        Node<T> node = new Node<>(v);
 
+        if (base == null) {
+            base = node;
+            topo = node;
+        }
+
+        node.anterior = topo.proximo;
+        topo.proximo = node.anterior;
+
+        topo = node;
+
+        tamanho++;
     }
 
-    @SuppressWarnings({ "unchecked", "null" })
     public void clear() {
         base = null;
         topo = null;
     }
 
     private Node<T> getNode(int pos) {
-        if(pos > tamanho) {
+        if (pos > tamanho) {
             throw new IllegalStateException("Length out of index.");
         }
 
-        return Node<T>;
-    }
+        Node<T> node = new Node<>(null);
 
-    public int find(T data) {
-        
+        if (tamanho / 2 <= pos) {
+            for (int i = 0; i < pos; i++) {
+                node = base.proximo;
+            }
+        } else {
+            for (int i = tamanho - 1; i > pos; i--) {
+                node = topo.anterior;
+            }
+        }
+
+        return node;
     }
 
     private static class Node<T> {
