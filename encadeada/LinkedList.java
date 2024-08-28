@@ -11,17 +11,39 @@ public class LinkedList<T> {
             topo = node;
         }
 
-        node.anterior = topo.proximo;
-        topo.proximo = node.anterior;
+        node.anterior = topo;
+        topo.proximo = node;
 
         topo = node;
 
         tamanho++;
     }
 
+    public void add(T v , int pos) {
+        Node<T> nodeIndex = getNode(pos);
+
+        Node<T> node = new Node<>(v);
+     
+        node.proximo = nodeIndex;
+        node.anterior = nodeIndex.anterior;
+
+        nodeIndex.anterior = node;
+
+        node.anterior = node;
+    }
+
     public void clear() {
         base = null;
         topo = null;
+    }
+
+    public T remove (int pos) {
+        Node<T> node = getNode(pos);
+
+        T valor = node.valor;
+
+
+        return valor;
     }
 
     private Node<T> getNode(int pos) {
