@@ -3,6 +3,11 @@ public class LinkedList<T> {
     private Node<T> topo;
     private int tamanho = 0;
 
+    public LinkedList (int tamanho) {
+        this.tamanho = tamanho;
+
+    }
+
     public void add(T v) {
         Node<T> node = new Node<>(v);
 
