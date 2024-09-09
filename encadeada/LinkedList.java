@@ -1,3 +1,5 @@
+package encadeada;
+
 public class LinkedList<T> {
     private Node<T> base;
     private Node<T> topo;

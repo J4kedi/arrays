@@ -1,3 +1,4 @@
+package staticList;
 import java.util.Arrays;
 
 public class StaticList<T> {

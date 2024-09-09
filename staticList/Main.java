@@ -1,3 +1,5 @@
+package staticList;
+
 public class Main {
     public static void main(String[] args) {
         StaticList<Integer> lista = new StaticList<>(4);
