@@ -25,5 +25,11 @@ public class Main {
         arvore.adicionar(3);
         arvore.adicionar(4);
         arvore.adicionar(5);
+
+        System.out.println(arvore.procurar(4));
+
+        System.out.println(arvore.remover(4));
+
+        System.out.println(arvore.procurar(4));
     }
 }

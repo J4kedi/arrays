@@ -2,48 +2,75 @@ package avore;
 
 public class Arvore {
     private Node raiz;
-    private int tamanho;
 
     public Arvore() {
         raiz = null;
-        tamanho = 0;
     }
 
     public void adicionar(int valor) {
         if (raiz == null) {
             raiz = new Node(valor);
-            tamanho++;
             return;
         }
 
-        Node noDireita = raiz.getDireita();
-        Node noEsquerda = raiz.getEsquerda();
         Node noAtual = raiz;
+        Node noAnterior = null;
+        boolean maior = false;
 
-        while (noAtual.getValor() != valor) {
-            if(noAtual.getValor() <= valor) {
+        while (noAtual != null) {
+            noAnterior = noAtual;
+            if (noAnterior.getValor() <= valor) {
                 noAtual = noAtual.getDireita();
+                maior = true;
             } else {
                 noAtual = noAtual.getEsquerda();
+                maior = false;
             }
         }
+
+        if (noAtual == null && maior) 
+            noAnterior.setDireita(new Node(valor));
+        else
+            noAnterior.setEsquerda(new Node(valor));
+
     }
 
     public Node procurar(int valor) {
         Node noAtual = raiz;
 
         while (noAtual.getValor() != valor) {
-            if(noAtual.getValor() <= valor) {
+            if (noAtual.getValor() <= valor)
                 noAtual = noAtual.getDireita();
-            } else {
+            else
                 noAtual = noAtual.getEsquerda();
-            }
-
+            
             if (noAtual == null)
-                throw new IllegalArgumentException("Valor não encontrado na avore");
+                throw new IllegalArgumentException("Nó não encontrado na avore");
         }
+        return noAtual;
+    }
+
+    public Node procurarNoAnterior(Node no) {
+        Node noAtual = raiz;
+        do {
+            if(noAtual.getValor() <= no.getValor())
+                noAtual = noAtual.getDireita();
+            else 
+                noAtual = noAtual.getEsquerda();
+        } while(noAtual.getDireita() != no && noAtual.getEsquerda() != no);
 
         return noAtual;
+    }
+
+    public int remover(int valor) {
+        Node no = procurar(valor);
+        Node noAnterior = procurarNoAnterior(no);
+
+        if (noAnterior.getValor() <= valor) 
+            noAnterior.setDireita(null);
+        else
+            noAnterior.setEsquerda(null);
+        return valor;
     }
 
     private class Node {
